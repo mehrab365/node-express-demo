@@ -3,11 +3,12 @@ let GenericDAO = function (entityObject) {
      var getAll = (req, res) =>{
         console.log('-----------------------> get all')
         console.log('-----------------------> query: ', req.query);
+        // eager loading with all dependent objs
         if(req.query.eager){
             console.log('has eager',req.query.eager);
-            let eager_fields = req.query.eager;
+            let eager_fields = req.query.eager.split(',');
             delete req.query.eager;
-            console.log(req.query);
+            console.log(eager_fields);
             console.log('-----------------------> query: ', req.query);
             entityObject.find().populate(eager_fields).exec(function (err, objs) {
                 if(err){
