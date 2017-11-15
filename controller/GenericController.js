@@ -10,7 +10,7 @@ let GenericDAO = function (entityObject) {
             delete req.query.eager;
             console.log(eager_fields);
             console.log('-----------------------> query: ', req.query);
-            entityObject.find().populate(eager_fields).exec(function (err, objs) {
+            entityObject.find(req.query).populate(eager_fields).exec(function (err, objs) {
                 if(err){
                     console.log(err);
                     res.status(500).send(err);
@@ -40,7 +40,15 @@ let GenericDAO = function (entityObject) {
 
     let getByIdUse = (req, res,  next) => {
         console.log('-----------------------> invoke middleware', req.params)
-        entityObject.findById(req.params.id,(err, obj)=>{
+        let eager_fields='';
+        if(req.query.eager) {
+            console.log('has eager', req.query.eager);
+            eager_fields = req.query.eager.split(',');
+            delete req.query.eager;
+            console.log(eager_fields);
+            console.log('-----------------------> query: ', req.query);
+        }
+        entityObject.findById(req.params.id).populate(eager_fields).exec((err, obj)=>{
             if(err){
                 console.log(err);
                 res.status(500).send(err);

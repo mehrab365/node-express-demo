@@ -1,7 +1,7 @@
 var Item = require('../models/ItemModel');
 var controller = require('./GenericController')(Item);
 
-let Controller = (eager=false) => {
+let Controller = () => {
     // if need more method
     let get_single_prop = (req, res) =>{
         console.log('single prop name and value: ',req.params.single_prop, req.obj[req.params.single_prop]);
