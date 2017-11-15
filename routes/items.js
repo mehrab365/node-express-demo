@@ -1,4 +1,4 @@
-var controller = require('../controller/ItemController')();
+let controller = require('../controller/ItemController')();
 let express = require('express');
 let router = express.Router({mergeParams: true});
 router.route('/')

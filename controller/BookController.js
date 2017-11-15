@@ -1,5 +1,5 @@
-var Book = require('../models/BookModel');
-var controller = require('./GenericController')(Book);
+let Book = require('../models/BookModel');
+let controller = require('./GenericController')(Book);
 
 let Controller = () => {
     // if need more method
@@ -24,6 +24,6 @@ let Controller = () => {
         remove: controller.remove,
         get_single_prop: get_single_prop
     };
-}
+};
 
 module.exports = Controller;

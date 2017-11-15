@@ -1,4 +1,4 @@
-var controller = require('../controller/CategoryController')();
+let controller = require('../controller/CategoryController')();
 let express = require('express');
 let router = express.Router({mergeParams: true});
 router.route('/')

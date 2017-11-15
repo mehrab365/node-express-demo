@@ -1,7 +1,7 @@
 let GenericDAO = function (entityObject) {
 
-     var getAll = (req, res) =>{
-        console.log('-----------------------> get all')
+     let getAll = (req, res) =>{
+        console.log('-----------------------> get all');
         console.log('-----------------------> query: ', req.query);
         // eager loading with all dependent objs
         if(req.query.eager){
@@ -31,15 +31,15 @@ let GenericDAO = function (entityObject) {
     };
 
     let add = (req, res) => {
-        console.log('-----------------------> add a obj', req.body)
+        console.log('-----------------------> add a obj', req.body);
         let obj = new entityObject(req.body);
         obj.save();
         console.log(obj);
         res.status(201).send(obj);
-    }
+    };
 
     let getByIdUse = (req, res,  next) => {
-        console.log('-----------------------> invoke middleware', req.params)
+        console.log('-----------------------> invoke middleware', req.params);
         let eager_fields='';
         if(req.query.eager) {
             console.log('has eager', req.query.eager);
@@ -59,26 +59,30 @@ let GenericDAO = function (entityObject) {
                 res.status(404).send('no record found');
             }
         });
-    }
+    };
 
     let getById = (req, res) => {
-        console.log('-----------------------> get by id', req.params.id)
-        res.json(req.obj)
-    }
+        console.log('-----------------------> get by id', req.params.id);
+        res.json(req.obj);
+    };
 
     let remove = (req, res) => {
-        console.log('removing obj _id:',req.obj._id )
+        console.log('removing obj _id:',req.obj._id );
         req.obj.remove(err => { err ? res.status(500).send(err) : res.status(204).send("removed"); });
-    }
+    };
 
     let update = (req, res) => {
-        console.log('-----------------------> invoke update method', req.params.id)
+        console.log('-----------------------> invoke update method', req.params.id);
+        console.log('req.obj:', req.obj);
         if(req.body._id){
-            console.log('deleting id from request id: ', req.body._id)
+            console.log('deleting id from request id: ', req.body);
             delete req.body.id;
         }
-        for(var param in req.body){
-            req.obj[param] = req.body[param];
+        for(let param in req.body){
+            if(req.body.hasOwnProperty(param)) {
+                console.log('check hasOwnProperty', req.obj.hasOwnProperty(param), req.body.hasOwnProperty(param));
+                req.obj[param] = req.body[param];
+            }
         }
         req.obj.save((err) =>{
             console.log("inside error arrow method");
@@ -86,7 +90,7 @@ let GenericDAO = function (entityObject) {
             console.log('type of req.body: ', typeof req.body, req.body);
             err ? res.status(500).send(err) : res.status(202).send(req.obj);
         });
-    }
+    };
 
     return {
         get_all: getAll,
@@ -96,5 +100,5 @@ let GenericDAO = function (entityObject) {
         update : update,
         remove: remove
     };
-}
+};
 module.exports = GenericDAO;

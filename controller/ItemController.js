@@ -1,5 +1,5 @@
-var Item = require('../models/ItemModel');
-var controller = require('./GenericController')(Item);
+let Item = require('../models/ItemModel');
+let controller = require('./GenericController')(Item);
 
 let Controller = () => {
     // if need more method
@@ -24,6 +24,6 @@ let Controller = () => {
         remove: controller.remove,
         get_single_prop: get_single_prop
     };
-}
+};
 
 module.exports = Controller;

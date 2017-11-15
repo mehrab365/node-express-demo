@@ -1,13 +1,13 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+let express = require('express');
+let path = require('path');
+let favicon = require('serve-favicon');
+let logger = require('morgan');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
 // mongodb configuration with mongoose
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var options = {
+let options = {
     useMongoClient: true,
     autoIndex: false, // Don't build indexes
     reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
@@ -16,18 +16,18 @@ var options = {
     // If not connected, return errors immediately rather than waiting for reconnect
     bufferMaxEntries: 0
 };
-var db = mongoose.connect('mongodb://localhost/BOOKAPI', options);
+let db = mongoose.connect('mongodb://localhost/BOOKAPI', options);
 console.log(db);
 
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var books = require('./routes/books');
-var packs = require('./routes/packs');
-var items = require('./routes/items');
-var categories = require('./routes/categories');
+let index = require('./routes/index');
+let users = require('./routes/users');
+let books = require('./routes/books');
+let packs = require('./routes/packs');
+let items = require('./routes/items');
+let categories = require('./routes/categories');
 
-var app = express();
+let app = express();
 
 // body-purser setup
 app.use(bodyParser.urlencoded({extended: true}));
@@ -54,13 +54,13 @@ app.use('/categories', categories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

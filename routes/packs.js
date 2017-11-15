@@ -1,5 +1,5 @@
-var controller = require('../controller/PackController')();
-// var router = require('./GenericRouter')(controller);
+let controller = require('../controller/PackController')();
+// let router = require('./GenericRouter')(controller);
 let express = require('express');
 let router = express.Router();
 

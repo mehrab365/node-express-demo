@@ -1,5 +1,5 @@
-var Pack = require('../models/PackModel');
-var pack_controller = require('./GenericController')(Pack);
+let Pack = require('../models/PackModel');
+let pack_controller = require('./GenericController')(Pack);
 
 let PackController = () => {
     // if need more method
@@ -23,6 +23,6 @@ let PackController = () => {
         remove: pack_controller.remove,
         get_single_prop: get_single_prop
     };
-}
+};
 
 module.exports = PackController;

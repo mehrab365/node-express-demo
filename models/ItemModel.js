@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-var model = new Schema({
+let model = new Schema({
     name: {type: String},
     date: {type: Date, default: Date.now},
     pack: [{type: mongoose.Schema.Types.ObjectId, ref: 'Pack'}],

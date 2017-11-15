@@ -1,7 +1,7 @@
-// var express = require('express');
-// var router = express.Router();
-// var Book = require('../models/BookModel');
-// var genericController = require('../controller/GenericController')(Book);
+// let express = require('express');
+// let router = express.Router();
+// let Book = require('../models/BookModel');
+// let genericController = require('../controller/GenericController')(Book);
 //
 //     /* GET book json. */
 // router.route('/')
@@ -20,8 +20,8 @@
 // module.exports = router;
 
 
-// var Book = require('../models/BookModel');
-// var controller = require('../controller/GenericController')(Book);
+// let Book = require('../models/BookModel');
+// let controller = require('../controller/GenericController')(Book);
 
 let express = require('express');
 let router = express.Router();

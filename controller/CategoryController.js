@@ -1,7 +1,7 @@
-var Category = require('../models/CategoryModel');
-var controller = require('./GenericController')(Category);
+let Category = require('../models/CategoryModel');
+let controller = require('./GenericController')(Category);
 
-let Controller = (eager=false) => {
+let Controller = () => {
     // if need more method
     let get_single_prop = (req, res) =>{
         console.log('single prop name and value: ',req.params.single_prop, req.obj[req.params.single_prop]);
@@ -24,6 +24,6 @@ let Controller = (eager=false) => {
         remove: controller.remove,
         get_single_prop: get_single_prop
     };
-}
+};
 
 module.exports = Controller;
